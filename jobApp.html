@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Job Application</title>
+</head>
+<body>
+    <center>
+    <h1>Job Application Form</h1>
+    <div class="container">
+
+    <form id="jobForm" onsubmit="return validateForm()">
+
+        <label>Full Name</label>
+        <input type="text" id="fullname" required>
+        <span class="error" id="nameError"></span>
+        <br><br>
+
+        <label>Email</label>
+        <input type="email" id="email" required>
+        <span class="error" id="emailError"></span>
+        <br><br>
+
+        <label>Position </label>
+        <select id="position">
+            <option value="">Select Position</option>
+            <option>Software Engineer</option>
+            <option>Web Developer</option>
+            <option>Data Analyst</option>
+        </select>
+        <span class="error" id="positionError"></span>
+        <br><br>
+
+        <button type="submit">Submit Application</button>
+
+    </form>
+</div>
+    </center>
+    <script>
+function validateForm() {
+    let isValid = true;
+
+    const name = document.getElementById("fullname").value.trim();
+    if (name.length < 3) {
+        document.getElementById("nameError").textContent = "Name must be at least 3 characters.";
+        isValid = false;
+    }
+
+    const email = document.getElementById("email").value.trim();
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById("emailError").textContent = "Enter a valid email.";
+        isValid = false;
+    }
+
+    const position = document.getElementById("position").value;
+    if (position === "") {
+        document.getElementById("positionError").textContent = "Please select a position.";
+        isValid = false;
+    }
+    return isValid;
+}
+</script>
+</body>
+</html>
